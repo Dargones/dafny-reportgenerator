@@ -24,12 +24,12 @@ jobs:
         git clone https://github.com/Dargones/dafny.git
         git -C dafny checkout testFrameworkCSharp
         dotnet build dafny/Source/Dafny.sln
-        echo $'#!/bin/bash \ndotnet ~/dafny/Binaries/Dafny.dll "$@"' > dafny/dafny
-        chmod ug+x dafny/dafny
+        echo $'#!/bin/bash \ndotnet /home/runner/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries/Dafny.dll "$@"' > dafny/Binaries/dafny
+        chmod ug+x dafny/Binaries/dafny
         pwd
         echo $HOME
-        cat dafny/dafny
-        export PATH="$HOME/dafny:$PATH"
+        cat dafny/Binaries/dafny
+        export PATH="/home/runner/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"
     - name: Verify Dafny code
       run: dotnet build -t:VerifyDafny -p:VerifyDafnyJobs=2 -p:TestVerifyOverride="verificationLogger:csv"
     - name: Run Tests
