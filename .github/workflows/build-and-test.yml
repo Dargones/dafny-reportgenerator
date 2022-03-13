@@ -26,6 +26,8 @@ jobs:
         dotnet build dafny/Source/Dafny.sln
         echo $'#!/bin/bash \ndotnet ~/dafny/Binaries/Dafny.dll "$@"' > dafny/dafny
         chmod ug+x dafny/dafny
+        pwd
+        echo $HOME
         cat dafny/dafny
         export PATH="$HOME/dafny:$PATH"
     - name: Verify Dafny code
