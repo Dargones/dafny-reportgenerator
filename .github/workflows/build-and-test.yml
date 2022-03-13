@@ -20,11 +20,12 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Set up Dafny
-      run: git clone https://github.com/Dargones/dafny.git
-      run: git -C dafny checkout testFrameworkCSharp
-      run: dotnet build dafny/Source/Dafny.sln
-      run: echo $'#!/bin/bash \ndotnet ~/dafny/Binaries/Dafny.dll "$@"' > ~/dafny/Binaries/dafny
-      run: PATH="$HOME/dafny/Binaries:$PATH"
+      run: | 
+        git clone https://github.com/Dargones/dafny.git
+        git -C dafny checkout testFrameworkCSharp
+        dotnet build dafny/Source/Dafny.sln
+        echo $'#!/bin/bash \ndotnet ~/dafny/Binaries/Dafny.dll "$@"' > ~/dafny/Binaries/dafny
+        PATH="$HOME/dafny/Binaries:$PATH"
     - name: Verify Dafny code
       run: dotnet build -t:VerifyDafny -p:VerifyDafnyJobs=2 -p:TestVerifyOverride="verificationLogger:csv"
     - name: Run Tests
