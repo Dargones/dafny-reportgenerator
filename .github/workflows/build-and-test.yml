@@ -25,6 +25,8 @@ jobs:
         git -C dafny checkout testFrameworkCSharp
         dotnet build dafny/Source/Dafny.sln
         echo $'#!/bin/bash \ndotnet ~/dafny/Binaries/Dafny.dll "$@"' > dafny/dafny
+        chmod ug+x dafny/dafny
+        cat dafny/dafny
         export PATH="$HOME/dafny:$PATH"
     - name: Verify Dafny code
       run: dotnet build -t:VerifyDafny -p:VerifyDafnyJobs=2 -p:TestVerifyOverride="verificationLogger:csv"
