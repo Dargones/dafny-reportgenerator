@@ -29,7 +29,7 @@ jobs:
         pwd
         echo $HOME
         cat dafny/Binaries/dafny
-        'PATH="/home/runner/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.profile
+        'export PATH="$HOME/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.profile
         source ~/.profile
         echo $PATH
         which dafny
