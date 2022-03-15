@@ -28,13 +28,15 @@ jobs:
         chmod ug+x dafny/Binaries/dafny
         echo 'PATH="$HOME/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.profile
         source ~/.profile
+        echo $PATH
         wget https://github.com/Z3Prover/z3/releases/download/Z3-4.8.5/z3-4.8.5-x64-ubuntu-16.04.zip
         unzip z3-4.8.5-x64-ubuntu-16.04.zip
         mv z3-4.8.5-x64-ubuntu-16.04 dafny/Binaries/z3
     - name: Verify Dafny code
       run: | 
         echo $PATH
-        which dafny
+        source ~/.profile
+        echo $PATH
         dotnet build -t:VerifyDafny -p:VerifyDafnyJobs=2 -p:TestVerifyOverride="verificationLogger:csv"
     - name: Run Tests
       run: dotnet test --verbosity normal
