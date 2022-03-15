@@ -31,8 +31,8 @@ jobs:
         cat dafny/Binaries/dafny
         echo $PATH
         ls -a ~/
-        echo 'export PATH="$HOME/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.bashrc
-        source ~/.bashrc
+        echo 'PATH="$HOME/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.profile
+        source ~/.profile
         echo $PATH
         which dafny
         dotnet build -t:VerifyDafny -p:VerifyDafnyJobs=2 -p:TestVerifyOverride="verificationLogger:csv"
