@@ -27,20 +27,22 @@ jobs:
         echo $'#!/bin/bash \ndotnet /home/runner/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries/Dafny.dll "$@"' > dafny/Binaries/dafny
         chmod ug+x dafny/Binaries/dafny
         echo 'PATH="$HOME/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.profile
-        source ~/.profile
-        echo $PATH
+    - name: Get Z3
+      run: |
         wget https://github.com/Z3Prover/z3/releases/download/Z3-4.8.5/z3-4.8.5-x64-ubuntu-16.04.zip
         unzip z3-4.8.5-x64-ubuntu-16.04.zip
         mv z3-4.8.5-x64-ubuntu-16.04 dafny/Binaries/z3
     - name: Verify Dafny code
       run: | 
-        echo $PATH
         source ~/.profile
-        echo $PATH
         dotnet build -t:VerifyDafny -p:VerifyDafnyJobs=2 -p:TestVerifyOverride="verificationLogger:csv"
     - name: Run Tests
-      run: dotnet test --verbosity normal
+      run: |
+        source ~/.profile
+        dotnet test --verbosity normal
     - name: Self Report
       # Generates a report based on the logged data from verifying itself.
       # This is both a guard against unstable verification and a smoke test of the tool itself.
-      run: dotnet run --project src -- summarize-csv-results --max-resource-count 1000000 src/TestResults/*.csv test/TestResults/*.csv
+      run: |
+        source ~/.profile
+        dotnet run --project src -- summarize-csv-results --max-resource-count 1000000 src/TestResults/*.csv test/TestResults/*.csv
