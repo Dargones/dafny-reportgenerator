@@ -30,7 +30,7 @@ jobs:
         echo $HOME
         cat dafny/Binaries/dafny
         echo $PATH
-        'export PATH="$HOME/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.profile
+        'PATH="/home/runner/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.profile
         source ~/.profile
         echo $PATH
         which dafny
