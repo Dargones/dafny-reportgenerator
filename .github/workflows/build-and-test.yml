@@ -31,7 +31,7 @@ jobs:
         cat dafny/Binaries/dafny
         echo $PATH
         ls -a ~/
-        'export PATH="$HOME/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.bashrc
+        echo 'export PATH="$HOME/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.bashrc
         source ~/.bashrc
         echo $PATH
         which dafny
