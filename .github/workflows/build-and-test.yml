@@ -29,12 +29,17 @@ jobs:
         pwd
         echo $HOME
         cat dafny/Binaries/dafny
+        echo $PATH
         'export PATH="$HOME/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.profile
         source ~/.profile
         echo $PATH
         which dafny
+        dotnet build -t:VerifyDafny -p:VerifyDafnyJobs=2 -p:TestVerifyOverride="verificationLogger:csv"
     - name: Verify Dafny code
-      run: dotnet build -t:VerifyDafny -p:VerifyDafnyJobs=2 -p:TestVerifyOverride="verificationLogger:csv"
+      run: | 
+        echo $PATH
+        which dafny
+        dotnet build -t:VerifyDafny -p:VerifyDafnyJobs=2 -p:TestVerifyOverride="verificationLogger:csv"
     - name: Run Tests
       run: dotnet test --verbosity normal
     - name: Self Report
