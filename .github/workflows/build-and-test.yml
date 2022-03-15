@@ -26,16 +26,11 @@ jobs:
         dotnet build dafny/Source/Dafny.sln
         echo $'#!/bin/bash \ndotnet /home/runner/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries/Dafny.dll "$@"' > dafny/Binaries/dafny
         chmod ug+x dafny/Binaries/dafny
-        pwd
-        echo $HOME
-        cat dafny/Binaries/dafny
-        echo $PATH
-        ls -a ~/
         echo 'PATH="$HOME/work/dafny-reportgenerator/dafny-reportgenerator/dafny/Binaries:$PATH"' >> ~/.profile
         source ~/.profile
-        echo $PATH
-        which dafny
-        dotnet build -t:VerifyDafny -p:VerifyDafnyJobs=2 -p:TestVerifyOverride="verificationLogger:csv"
+        wget https://github.com/Z3Prover/z3/releases/download/Z3-4.8.5/z3-4.8.5-x64-ubuntu-16.04.zip
+        unzip z3-4.8.5-x64-ubuntu-16.04.zip
+        mv z3-4.8.5-x64-ubuntu-16.04 dafny/Binaries/z3
     - name: Verify Dafny code
       run: | 
         echo $PATH
