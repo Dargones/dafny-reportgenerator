@@ -39,7 +39,7 @@ jobs:
     - name: Run Tests
       run: |
         source ~/.profile
-        dotnet test --verbosity normal
+        dotnet test --verbosity normal /p:CollectCoverage=true
     - name: Self Report
       # Generates a report based on the logged data from verifying itself.
       # This is both a guard against unstable verification and a smoke test of the tool itself.
