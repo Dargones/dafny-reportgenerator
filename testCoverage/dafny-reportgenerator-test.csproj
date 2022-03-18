@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <IsPackable>false</IsPackable>
-    <NoWarn>0436</NoWarn>
+    <NoWarn>0436</NoWarn>	    
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,18 +22,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Moq" Version="4.16.1" />	    
-    <PackageReference Include="dafny.msbuild" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <VerifyDafnyPassthrough Include="timeLimit:60" />
-    <VerifyDafnyPassthrough Include="definiteAssignment:3" />
-    <VerifyDafnyPassthrough Include="$(TestVerifyOverride)" />
-    <VerifyDafnyPassthrough Include="synthesize" />	    
+    <ProjectReference Include="..\src\dafny-reportgenerator.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-	  <ProjectReference Include="../src/dafny-reportgenerator.csproj" />
-  </ItemGroup>		  
 </Project>

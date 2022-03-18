@@ -1,4 +1,7 @@
-/.idea
+*/.idea
+*.dll
+*.xml
+*.json
 
 src/obj
 src/bin
@@ -7,3 +10,12 @@ src/TestResults
 test/obj
 test/bin
 test/TestResults
+
+testCoverage/obj
+testCoverage/bin
+testCoverage/TestResults
+testCoverage/GeneratedFromDafny.cs
+
+DuplicateRemover/obj
+DuplicateRemover/bin
+DuplicateRemover/TestResults

@@ -32,14 +32,10 @@ jobs:
         wget https://github.com/Z3Prover/z3/releases/download/Z3-4.8.5/z3-4.8.5-x64-ubuntu-16.04.zip
         unzip z3-4.8.5-x64-ubuntu-16.04.zip
         mv z3-4.8.5-x64-ubuntu-16.04 dafny/Binaries/z3
-    - name: Verify Dafny code
+    - name: Verify, Compile, and Test Dafny Code
       run: | 
         source ~/.profile
-        dotnet build -t:VerifyDafny -p:VerifyDafnyJobs=2 -p:TestVerifyOverride="verificationLogger:csv"
-    - name: Run Tests
-      run: |
-        source ~/.profile
-        dotnet test --verbosity normal /p:CollectCoverage=true
+        make
     - name: Self Report
       # Generates a report based on the logged data from verifying itself.
       # This is both a guard against unstable verification and a smoke test of the tool itself.
