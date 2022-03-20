@@ -29,8 +29,7 @@
   <ItemGroup>
     <VerifyDafnyPassthrough Include="timeLimit:60" />
     <VerifyDafnyPassthrough Include="definiteAssignment:3" />
-    <VerifyDafnyPassthrough Include="$(TestVerifyOverride)" />
-    <VerifyDafnyPassthrough Include="synthesize" />	    
+    <VerifyDafnyPassthrough Include="$(TestVerifyOverride)" />    
   </ItemGroup>
 
   <ItemGroup>

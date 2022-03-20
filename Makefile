@@ -21,7 +21,8 @@ coverage : compile test
 	dotnet build DuplicateRemover/DuplicateRemover.sln
 	dotnet DuplicateRemover/bin/Debug/net6.0/DuplicateRemover.dll test/obj/Debug/net6.0/GeneratedFromDafny.cs src/obj/Debug/net6.0/GeneratedFromDafny.cs > testCoverage/GeneratedFromDafny.cs
 	dotnet build testCoverage/dafny-reportgenerator-test.csproj
-	dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura testCoverage/dafny-reportgenerator-test.csproj
+	dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=json testCoverage/dafny-reportgenerator-test.csproj
+	python3 coverage.py testCoverage/coverage.json CSV Maps Seq Sets StandardLibrary TestResult
 	
 
 #############################
